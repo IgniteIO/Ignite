@@ -237,10 +237,12 @@ var Ignite = {
                     $('.errors pre').text(data.errors);
                 } else {
                     var id = data.id;
-                    sharejs.open(id, 'text', 'http://ignite.io/channel', function(error, doc) {
-                        doc.insert(0, code);
-                        doc.close();
-                    });
+                    if(realtime) {
+                        sharejs.open(id, 'text', 'http://ignite.io/channel', function(error, doc) {
+                            doc.insert(0, code);
+                            doc.close();
+                        });
+                    }
                     window.location = "/code/"+id;
                 }
 					

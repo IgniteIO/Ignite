@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Real Time Options
+ */
+$config['ignite']['live'] = false;
+$config['ignite']['live-url'] = 'http://ignite.io/';
+
+/**
+ * Ignite Themes List
+ */
 $config['ignite']['themes'] = array(
     'ambiance' => 'Ambiance',
     'blackboard' => 'Blackboard',
@@ -16,6 +25,9 @@ $config['ignite']['themes'] = array(
     'xq-dark' => 'XQ Dark'
 );
 
+/**
+ * Ignite Languages List
+ */
 $config['ignite']['languages'] = array(
     'Igniteable' => array(
         'php' => 'PHP',

@@ -119,7 +119,7 @@
                             </li>
                             <li>
                                 <div class="btn-group hidden-tablet bugs">
-                                    <a class="btn btn-warning" href="https://github.com/Axxim/Ignite/issues" target="_blank">Bugs & Feedback</a>
+                                    <a class="btn btn-warning" href="https://github.com/IgniteIO/Ignite" target="_blank">GitHub</a>
                                 </div>
                             </li>
                             <?php if ($this->session->userdata('username')) { ?>
@@ -174,7 +174,7 @@
                 <div id="content">
                     <?php
                     if ($this->uri->segment(1) == 'code') {
-                        $value = "<script type=\"text/javascript\" src=\"http://ignite.io/api/code/embed/" . $code['_id']['$id'] . ".js\"></script>";
+                        $value = "<script type=\"text/javascript\" src=\"".base_url('/api/code/embed'.$code['_id']['$id'].'.js')."></script>";
                         ?>
                         <form class="form-inline embed">
                             <div class="input-prepend">
@@ -243,7 +243,7 @@
                         <div class="control-group">
                             <label class="control-label" for="local-realtime">Real Time Editing</label>
                             <div class="controls">
-                                <input type="checkbox" id="local-realtime" name="local[realtime]" checked>
+                                <input type="checkbox" id="local-realtime" name="local[realtime]"<?php ($this->config->item('live', 'ignite') ? ' checked': ''); ?>>
                             </div>
                         </div>
                     </fieldset>
@@ -413,11 +413,13 @@
     <!-- CodeMirror Plugins -->
     <script src="<?php echo base_url('assets/libraries/codemirror/lib/util/loadmode.js'); ?>"></script>
     <!-- End CodeMirror Plugins -->
+    <script src="<?php echo base_url('assets/js/handlebars.js'); ?>"></script>
 
+    <?php if($this->config->item('live', 'ignite')): ?>
     <script src="http://ignite.io/channel/bcsocket.js"></script>
     <script src="http://ignite.io/share/share.js"></script>
     <script src="http://ignite.io/share/cm.js"></script>
-    <script src="<?php echo base_url('assets/js/handlebars.js'); ?>"></script>
+    <?php endif; ?>
 
     <script src="<?php echo base_url('assets/js/ignite.js'); ?>"></script>
 

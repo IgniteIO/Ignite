@@ -65,8 +65,13 @@ class Code extends CI_Controller {
                 'name' => $this->input->post('name'),
                 'realtime' => $this->input->post('realtime'));
 
-            if ($this->input->post('id'))
+            if($commit['realtime'] && !$this->config->item('live', 'ignite')) {
+                $commit['realtime'] = FALSE;
+            }
+
+            if ($this->input->post('id')) {
                 $commit['parent'] = $this->input->post('id');
+            }
 
             $id = $this->mongo_db->insert('code', $commit);
             $id = json_encode($id);

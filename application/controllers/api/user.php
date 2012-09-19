@@ -31,19 +31,20 @@ class User extends CI_Controller {
         $document = $document[0];
 
         $online = array_unique($document['online']);
-
-        $re = '/(?!\d{1,3}\.\d{1,3}\.)\d/';
-        foreach ($online as $key => $ip) {
-            if ($this->input->valid_ip($ip)) {
-                $res = preg_replace($re, '*', $ip);
-                $online[$key] = $res;
+        if(isset($online)) {
+            $re = '/(?!\d{1,3}\.\d{1,3}\.)\d/';
+            foreach ($online as $key => $ip) {
+                if ($this->input->valid_ip($ip)) {
+                    $res = preg_replace($re, '*', $ip);
+                    $online[$key] = $res;
+                }
             }
+
+            $this->checkOffline($id);
+            $this->online($id);
+
+            echo json_encode(array("users" => $online));
         }
-
-        $this->checkOffline($id);
-        $this->online($id);
-
-        echo json_encode(array("users" => $online));
     }
 
     public function online($id) {
