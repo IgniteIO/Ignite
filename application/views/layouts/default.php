@@ -416,9 +416,9 @@
     <script src="<?php echo base_url('assets/js/handlebars.js'); ?>"></script>
 
     <?php if($this->config->item('live', 'ignite')): ?>
-    <script src="http://ignite.io/channel/bcsocket.js"></script>
-    <script src="http://ignite.io/share/share.js"></script>
-    <script src="http://ignite.io/share/cm.js"></script>
+    <script src="<?php echo $this->config->item('live-url', 'ignite'); ?>channel/bcsocket.js"></script>
+    <script src="<?php echo $this->config->item('live-url', 'ignite'); ?>share/share.js"></script>
+    <script src="<?php echo $this->config->item('live-url', 'ignite'); ?>share/cm.js"></script>
     <?php endif; ?>
 
     <script src="<?php echo base_url('assets/js/ignite.js'); ?>"></script>

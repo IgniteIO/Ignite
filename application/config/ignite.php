@@ -4,7 +4,7 @@
  * Real Time Options
  */
 $config['ignite']['live'] = false;
-$config['ignite']['live-url'] = 'http://ignite.io/';
+$config['ignite']['live-url'] = 'https://ignite.io/';
 
 /**
  * Ignite Themes List
