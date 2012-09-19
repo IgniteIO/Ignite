@@ -93,6 +93,8 @@ class Code extends CI_Controller {
             $this->python($code, $return);
         } elseif ($language == 'ruby') {
             $this->ruby($code, $return);
+        } elseif ($language == 'javascript' || $language == 'nodejs') {
+            $this->javascript($code, $return);
         } else {
             exit(json_encode(array('status' => 'error', 'message' => 'This language can\'t be ran, sorry!')));
         }
@@ -216,6 +218,45 @@ class Code extends CI_Controller {
         curl_close($ch);
 
         exit(json_encode(array('status' => 'success', 'output' => $matches[1], 'errors' => null)));
+    }
+
+
+    public function javascript($code) {
+        $code = urldecode($code);
+        $fields_string = '';
+
+        $url = 'http://code.ignite.io:1337/compile';
+        $fields = array(
+            'code' => urlencode($code)
+        );
+
+        //url-ify the data for the POST
+        foreach ($fields as $key => $value) {
+            $fields_string .= $key . '=' . $value . '&';
+        }
+        rtrim($fields_string, '&');
+
+        //open connection
+        $ch = curl_init();
+
+        //set the url, number of POST vars, POST data
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, count($fields));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
+
+        //execute post
+        ob_start();
+
+        $result = curl_exec($ch);
+        $output = ob_get_contents();
+
+        ob_end_clean();
+        $output = json_decode($output, true);
+
+        //close connection
+        curl_close($ch);
+
+        exit(json_encode(array('status' => 'success', 'output' => $output['result'], 'errors' => $output['console'])));
     }
 
     private function getContents($url) {
