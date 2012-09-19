@@ -1,0 +1,10 @@
+*/config/development
+*/config/production
+*/logs/log-*.php
+*/logs/!index.html
+*/cache/*
+*/cache/!index.html
+dump
+nbproject
+node_modules
+.idea
