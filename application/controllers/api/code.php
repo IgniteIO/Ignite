@@ -220,7 +220,6 @@ class Code extends CI_Controller {
         exit(json_encode(array('status' => 'success', 'output' => $matches[1], 'errors' => null)));
     }
 
-
     public function javascript($code) {
         $code = urldecode($code);
         $fields_string = '';
@@ -252,6 +251,12 @@ class Code extends CI_Controller {
 
         ob_end_clean();
         $output = json_decode($output, true);
+
+        // Let's parse the return
+        if($output['result'] == null || $output['result'] == "null") {
+            $output['result']  = implode(PHP_EOL, $output['console']);
+            $output['console'] = '';
+        }
 
         //close connection
         curl_close($ch);
