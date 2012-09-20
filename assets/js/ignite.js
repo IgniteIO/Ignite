@@ -238,7 +238,7 @@ var Ignite = {
                 } else {
                     var id = data.id;
                     if(realtime) {
-                        sharejs.open(id, 'text', 'http://ignite.io/channel', function(error, doc) {
+                        sharejs.open(id, 'text', 'https://ignite.io/channel', function(error, doc) {
                             doc.insert(0, code);
                             doc.close();
                         });
@@ -339,7 +339,7 @@ var Ignite = {
         if(typeof code != 'undefined' && code.live === true) {
             console.log(new Date().getTime() + ": Real Time Enabled");
 			
-            sharejs.open(code.id, 'text', 'http://ignite.io/channel', function(error, doc) {
+            sharejs.open(code.id, 'text', 'https://ignite.io/channel', function(error, doc) {
                 console.log(new Date().getTime() + ": Opening ");
                 
                 if (error) {
