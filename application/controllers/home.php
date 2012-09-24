@@ -6,6 +6,7 @@ class Home extends CI_Controller {
      * Serves the homepage
      */
     public function index() {
+
 		$data['content'] = $this->load->view('code/new', null, true);
 
 		$this->load->view('layouts/default', $data);

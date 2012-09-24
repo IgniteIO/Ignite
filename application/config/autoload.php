@@ -64,7 +64,7 @@ $autoload['libraries'] = array('mongo_db','session');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url','form','cookie');
+$autoload['helper'] = array('url','form','cookie','language');
 
 
 /*
@@ -96,7 +96,7 @@ $autoload['config'] = array('ignite');
 |
 */
 
-$autoload['language'] = array();
+$autoload['language'] = array('general');
 
 
 /*

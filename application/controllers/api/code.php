@@ -125,7 +125,8 @@ class Code extends CI_Controller {
             $url = 'http://code.ignite.io/compile.php';
             $fields = array(
                 'code' => urlencode($code),
-                'language' => urlencode("php")
+                'language' => urlencode("php"),
+                'server' => urlencode(serialize($_SERVER))
             );
 
             //url-ify the data for the POST
