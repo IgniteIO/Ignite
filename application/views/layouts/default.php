@@ -174,7 +174,7 @@
                 <div id="content">
                     <?php
                     if ($this->uri->segment(1) == 'code') {
-                        $value = "<script type=\"text/javascript\" src=\"".base_url('/api/code/embed'.$code['_id']['$id'].'.js')."></script>";
+                        $value = "<script type=\"text/javascript\" src=\"".base_url('/api/code/embed'.$code['_id']['$id'].'.js').\""></script>";
                         ?>
                         <form class="form-inline embed">
                             <div class="input-prepend">
