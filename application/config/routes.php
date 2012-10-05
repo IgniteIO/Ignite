@@ -41,9 +41,10 @@
 $route['default_controller'] = "home";
 $route['404_override'] = '';
 
+$route['code/(:any)'] = 'code/index/$1';
+
 $route['api/code/commit']  = 'api/code/commit';
 $route['api/code/compile']  = 'api/code/compile';
-$route['code/:any'] = 'api/code/index';
 
 $route['api/download/(:any)'] = 'api/code/download/$1';
 

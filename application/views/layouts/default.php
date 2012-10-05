@@ -20,7 +20,6 @@
         <link href="<?php echo base_url('assets/libraries/codemirror/lib/util/dialog.css'); ?>" rel="stylesheet">
 
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
-        <link href="<?php echo base_url('assets/libraries/fontawesome/css/font-awesome.css'); ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/ignite.css'); ?>" rel="stylesheet">
 
         <script src="<?php echo base_url('assets/libraries/modernizr.min.js'); ?>"></script>
@@ -39,115 +38,123 @@
 
     <body>
 
-        <div class="navbar navbar-fixed-top">
-            <div class="navbar-inner hidden-phone">
+        <div id="navbar" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
                 <div class="container-fluid">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
                     <a class="brand" href="<?php echo base_url(); ?>"><i class="icon-fire"></i><span class="hidden-tablet"> Ignite</span></a>
-                    <div class="nav-collapse">
-                        <ul class="nav">
-                            <li class="active">
+                    <ul class="nav">
+                        <li>
+                            <div class="btn-toolbar">
                                 <div class="btn-group">
-                                    <a class="btn btn-primary play" href="#"><i class="icon-play icon-white"></i> Ignite</a>
-                                </div><!-- /btn-group -->
+                                    <button class="btn btn-primary play" data-original-title="Run - Ctrl+Enter"><i class="icon-play icon-white"></i></button>
+                                    <button class="btn btn-primary save" data-original-title="Save"><i class="icon-download-alt icon-white"></i></button>
+                                    <button class="btn btn-primary options" data-original-title="Options"><i class="icon-cog icon-white"></i></button>
+                                </div>
+                            </div>
+                        </li>
+                        <!--<li class="active">
+                            <div class="btn-group">
+                                <a class="btn btn-primary play" href="#"><i class="icon-play icon-white"></i> Ignite</a>
+                            </div>
+                        </li>
+                        <?php if ($this->uri->segment(1) == 'code') { ?>
+                            <li>
+                                <div class="btn-group">
+                                    <a class="btn btn-primary save" href="#"><i class="icon-download-alt icon-white"></i> Fork</a>
+                                </div>
                             </li>
-                            <?php if ($this->uri->segment(1) == 'code') { ?>
-                                <li>
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary save" href="#"><i class="icon-download-alt icon-white"></i> Fork</a>
-                                    </div>
-                                </li>
-                            <?php } else { ?>
-                                <li>
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary save" href="#"><i class="icon-download-alt icon-white"></i> Save</a>
-                                    </div>
-                                </li>
-                            <?php } ?>
+                        <?php } else { ?>
+                            <li>
+                                <div class="btn-group">
+                                    <a class="btn btn-primary save" href="#"><i class="icon-download-alt icon-white"></i> Save</a>
+                                </div>
+                            </li>
+                        <?php } ?>
 
-                            <?php if ($this->uri->segment(1) != 'code' || isset($code) && $code['user'] == $this->Account_model->username()) { ?> 
-                                <li>
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary options" href="#"><i class="icon-cog icon-white"></i> Options</a>
-                                    </div>
-                                </li>
-                            <?php } ?>
-                            <li class="divider"></li>
+                        <?php if ($this->uri->segment(1) != 'code' || isset($code) && $code['user'] == $this->Account_model->username()) { ?>
                             <li>
                                 <div class="btn-group">
-                                    <?php
-                                    if (isset($code['language']))
-                                        $language = $code['language'];
-                                    else
-                                        $language = 'php';
-                                    $elements = 'id="language" class="language span2" onchange="Ignite.SelectLanguage(this)"';
-                                    echo form_dropdown('language', $languages, $language, $elements);
-                                    ?>
-                                    <?php form_dropdown() ?>
+                                    <a class="btn btn-primary options" href="#"><i class="icon-cog icon-white"></i> Options</a>
                                 </div>
                             </li>
-                            <li>
-                                <div class="btn-group">
-                                    <?php
-                                    $themes['default'] = 'CodeMirror';
-                                    if ($this->input->cookie('theme'))
-                                        $theme = $this->input->cookie('theme');
-                                    else
-                                        $theme = "neat";
-                                    $elements = 'id="theme" class="span2" onchange="Ignite.SelectTheme(this)"';
-                                    echo form_dropdown('theme', $themes, $theme, $elements);
-                                    ?>
-                                    <?php form_dropdown() ?>
+                        <?php } ?>
+                        -->
+                        <li class="divider"></li>
+                        <li>
+                            <div class="btn-group">
+                                <?php
+                                if (isset($code['language']))
+                                    $language = $code['language'];
+                                else
+                                    $language = 'php';
+                                $elements = 'id="language" class="language span2" onchange="Ignite.SelectLanguage(this)"';
+                                echo form_dropdown('language', $languages, $language, $elements);
+                                ?>
+                                <?php form_dropdown() ?>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="btn-group">
+                                <?php
+                                $themes['default'] = 'CodeMirror';
+                                if ($this->input->cookie('theme'))
+                                    $theme = $this->input->cookie('theme');
+                                else
+                                    $theme = "neat";
+                                $elements = 'id="theme" class="span2" onchange="Ignite.SelectTheme(this)"';
+                                echo form_dropdown('theme', $themes, $theme, $elements);
+                                ?>
+                                <?php form_dropdown() ?>
 
+                            </div>
+                        </li>
+                        <li>
+                            <div class="btn-group hidden-tablet">
+                                <a class="btn btn-primary about" href="#about">About</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="nav pull-right" id="account">
+                        <li>
+                            <div class="btn-group hidden-tablet">
+                                <a class="btn btn-success" href="https://www.gittip.com/clone1018/" target="_blank">Tip Me!</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="btn-group hidden-tablet social">
+                                <a class="btn btn-info" href="http://twitter.com/IgniteIO" target="_blank">@IgniteIO</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="btn-group hidden-tablet bugs">
+                                <a class="btn btn-warning" href="https://github.com/IgniteIO/Ignite" target="_blank">GitHub</a>
+                            </div>
+                        </li>
+                        <?php if ($this->session->userdata('username')) { ?>
+                            <li>
+                                <div class="btn-group">
+                                    <button class="btn btn-primary"><?php echo $this->session->userdata('username'); ?></button>
+                                    <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                                    <ul class="dropdown-menu">
+                                        <li><?php echo anchor('#fires', 'Your Fires', array('data-toggle' => 'modal', 'onclick' => 'Ignite.Fires()')); ?></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#" class="logout">Logout</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        <?php } else { ?>
+                            <li>
+                                <div class="btn-group">
+                                    <?php echo anchor('#login', 'Login', array('class' => 'btn btn-primary', 'data-toggle' => 'modal')); ?>
                                 </div>
                             </li>
                             <li>
-                                <div class="btn-group hidden-tablet">
-                                    <a class="btn btn-primary about" href="#about">About</a>
+                                <div class="btn-group">
+                                    <?php echo anchor('#register', 'Register', array('class' => 'btn btn-primary', 'data-toggle' => 'modal')); ?>
                                 </div>
                             </li>
-                        </ul>
-                        <ul class="nav pull-right" id="account">
-                            <li>
-                                <div class="btn-group hidden-tablet social">
-                                    <a class="btn btn-info" href="http://twitter.com/IgniteIO" target="_blank">@IgniteIO</a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="btn-group hidden-tablet bugs">
-                                    <a class="btn btn-warning" href="https://github.com/IgniteIO/Ignite" target="_blank">GitHub</a>
-                                </div>
-                            </li>
-                            <?php if ($this->session->userdata('username')) { ?>
-                                <li>
-                                    <div class="btn-group">
-                                        <button class="btn btn-primary"><?php echo $this->session->userdata('username'); ?></button>
-                                        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
-                                        <ul class="dropdown-menu">
-                                            <li><?php echo anchor('#fires', 'Your Fires', array('data-toggle' => 'modal', 'onclick' => 'Ignite.Fires()')); ?></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#" class="logout">Logout</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            <?php } else { ?> 
-                                <li>
-                                    <div class="btn-group">
-                                        <?php echo anchor('#login', 'Login', array('class' => 'btn btn-primary', 'data-toggle' => 'modal')); ?>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="btn-group">
-                                        <?php echo anchor('#register', 'Register', array('class' => 'btn btn-primary', 'data-toggle' => 'modal')); ?>
-                                    </div>
-                                </li>
-                            <?php } ?>
-                        </ul>
-                    </div><!--/.nav-collapse -->
+                        <?php } ?>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -161,26 +168,20 @@
                     <a class="btn btn-primary hide-layer" href="#" rel="tooltip" title="Close the Ignite Pane"><i class="icon-forward icon-white"></i> Close</a>
                     <div class="btn-toolbar">
                         <?php if ($this->uri->segment(1) == 'code') { ?><a class="btn btn-primary download" href="#" rel="tooltip" title="Download Your Fire">Download Fire</a><?php } ?>
-                        <div class="btn-group">
-                            <a class="btn btn-info" rel="nofollow" href='javascript:void(0);' onclick="window.open('https://twitter.com/share?url=<?php echo current_url(); ?>', '_blank', 'width=800,height=600,scrollbars=yes,status=yes,resizable=yes,screenx=0,screeny=0');" rel="tooltip" title="Share on Twitter"><i class="icon-twitter"></i></a>
-                            <a class="btn btn-info" rel="nofollow" href='javascript:void(0);' onclick="window.open('http://www.facebook.com/sharer.php?u=<?php echo current_url(); ?>', '_blank', 'width=800,height=600,scrollbars=yes,status=yes,resizable=yes,screenx=0,screeny=0');" rel="tooltip" title="Share on Facebook"><i class="icon-facebook"></i></a>
-                            <a class="btn btn-info" rel="nofollow" href='javascript:void(0);' onclick="window.open('https://plusone.google.com/_/+1/confirm?hl=en&url=<?php echo current_url(); ?>', '_blank', 'width=800,height=600,scrollbars=yes,status=yes,resizable=yes,screenx=0,screeny=0');" rel="tooltip" title="Share on Google+"><i class="icon-google-plus"></i></a>
-                        </div>
                     </div>
                 </div>
                 <!-- Display Embed Javascript -->
 
-
                 <div id="content">
                     <?php
                     if ($this->uri->segment(1) == 'code') {
-                        $value = "<script type=\"text/javascript\" src=\"".base_url('/api/code/embed'.$code['_id']['$id'].'.js')."></script>";
+                        $value = "<script type=\"text/javascript\" src=\"".base_url('/api/code/embed/'.$code['_id']['$id'].'.js')."\"></script>";
                         ?>
                         <form class="form-inline embed">
                             <div class="input-prepend">
                                 <span class="add-on">Embed JS</span><input type="text" value="<?php echo htmlentities($value); ?>">
                             </div>
-                        </form>                                
+                        </form>
                     <?php } ?>
                     <h2>Output</h2>
                     <div class="support">
@@ -287,11 +288,10 @@
 
                 <h2>News</h2>
                 <h4>Ignite now supports PHP</h4>
-                <p>Ignite now fully supports PHP, feel free to check out these fires to get started: <a href="http://ignite.io/code/4fa9402aef167b8e0f000000">Reddit API</a>, <a href="http://ignite.io/code/4fa940c1ef167bbf0f000000">Loop</a>, <a href="http://ignite.io/code/4fa90e28ef167b8b72000000">Fizz Buzz</a>.</p> 
+                <p>Ignite now fully supports PHP, feel free to check out these fires to get started: <a href="http://ignite.io/code/4fa9402aef167b8e0f000000">Reddit API</a>, <a href="http://ignite.io/code/4fa940c1ef167bbf0f000000">Loop</a>, <a href="http://ignite.io/code/4fa90e28ef167b8b72000000">Fizz Buzz</a>.</p>
                 <br>
             </div>
         </div>
-    </div><!--/.fluid-container-->
 
     <div id="login" class="modal hide fade">
         <form action="/account/login">
@@ -405,6 +405,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="<?php echo base_url('assets/js/libraries/jquery-1.8.1.min.js'); ?>"><\/script>')</script>
     <script src="<?php echo base_url('assets/js/jquery-ui.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/libraries/jquery.keybind.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/jquery.cookie.js'); ?>"></script>
     <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/bootstrap-tooltip.js'); ?>"></script>

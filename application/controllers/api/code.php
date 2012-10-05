@@ -101,22 +101,11 @@ class Code extends CI_Controller {
     }
 
     private function php($code, $return = false) {
-        //error_reporting(0);
-        //$this->load->library('safereval');
-
         $code = urldecode($code);
 
-        //$newLine = (PHP_EOL > "\r\n" ? "\r\n" : "\n");
-        //$explodedCode = explode($newLine, $code);
         $line = preg_split('#(\r?\n|\r)#', $code);
 
         if (strpos($line[0], '<?php') !== false) {
-            //$explodedCode[0] = str_replace(array("<?php", "<?"), '', $explodedCode[0]);
-            //$code = implode($newLine, $explodedCode);
-            //print_r($code);
-            //$code = preg_replace('/^.+\n/', '', $code);
-            //$code = preg_replace('/^.+<\?(php)?/i', '', $code, 1);
-            //$code = preg_replace('/^.+?<\?(php)?\s*/is', '', $code, -1);
             unset($line[0]);
             $code = implode($line, PHP_EOL);
 

@@ -1,7 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 // Generally will be localhost if you're querying from the machine that Mongo is installed on
-$config['mongo_host'] = "axxim.net";
+$config['mongo_host'] = "localhost";
 
 // Generally will be 27017 unless you've configured Mongo otherwise
 $config['mongo_port'] = 27017;
@@ -11,7 +11,7 @@ $config['mongo_db'] = "ignite";
 
 // Leave blank if Mongo is not running in auth mode
 $config['mongo_user'] = "ignite";
-$config['mongo_pass'] = "bRun4bRu7ufrespuqezu";
+$config['mongo_pass'] = "";
 
 // Persistant connections
 $config['mongo_persist'] = TRUE;

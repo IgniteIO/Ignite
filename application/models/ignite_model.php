@@ -5,7 +5,7 @@
  *
  * @author clone1018
  */
-class Ignite extends CI_Model {
+class Ignite_model extends CI_Model {
 
     /**
      * Model Constructor

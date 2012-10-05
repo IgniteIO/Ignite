@@ -20,8 +20,8 @@
  */
 
 
-if(!isset($_SERVER['SERVER_NAME'])) $_SERVER['SERVER_NAME'] = 'localhost';
-if ($_SERVER['SERVER_NAME'] == 'localhost') {
+if(!isset($_SERVER['SERVER_NAME'])) $_SERVER['SERVER_NAME'] = 'ignite.local';
+if ($_SERVER['SERVER_NAME'] == 'ignite.local') {
     define('ENVIRONMENT', 'development');
 } else {
     define('ENVIRONMENT', 'production');
