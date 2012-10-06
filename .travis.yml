@@ -7,7 +7,7 @@ php:
   - 5.4
 
 before_script:
-  - ./.scripts/mongo-php-driver-installer.sh
+  - pecl -q install mongo && echo "extension=mongo.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
 
 script: php index.php testing test
 
