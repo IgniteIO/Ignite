@@ -1,8 +1,13 @@
 language: php
 
+services: mongodb
+
 php:
   - 5.3
   - 5.4
+
+before_script:
+  - ./.scripts/mongo-php-driver-installer.sh
 
 script: php index.php testing test
 
