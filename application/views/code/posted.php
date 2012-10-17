@@ -15,5 +15,5 @@
             content: <?php echo json_encode($code['code']); ?>, 
             live: <?php echo ($code['realtime']) ? 'true' : 'false';; ?> 
     }; 
-    //window.onload = function () { compileCode(); };
+    $(function() { Ignite.Code.Compile(); });
 </script>
